@@ -1,22 +1,21 @@
 name: NEPSE Data Collection
 
 on:
-  # Run every 5 minutes during trading hours (11:00-15:00 Nepal time)
+  # Run every 5 minutes during NEPSE trading hours
+  # Nepal time: 11:00–15:00 (UTC +5:45)
+  # UTC equivalent: 05:15–09:15
   schedule:
-    # Nepal time is UTC+5:45
-    # 11:00 Nepal = 05:15 UTC
-    # 15:00 Nepal = 09:15 UTC
-    - cron: '*/5 5-9 * * 1-5'  # Every 5 min, 05:00-09:59 UTC, Mon-Fri
-  
+    - cron: "*/5 5-9 * * 1-5"
+
   # Allow manual trigger
   workflow_dispatch:
 
 jobs:
   collect-data:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 1
@@ -24,25 +23,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "18"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run data collection
+      - name: Run NEPSE data collector
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
           DATA_LAKE_OWNER: ${{ secrets.DATA_LAKE_OWNER }}
           DATA_LAKE_REPO: ${{ secrets.DATA_LAKE_REPO }}
           DATA_LAKE_BRANCH: main
-          LOG_TO_FILE: true
+          LOG_TO_FILE: "true"
         run: npm start
 
-      - name: Upload logs on failure
+      - name: Upload logs if job fails
         if: failure()
         uses: actions/upload-artifact@v3
         with:
-          name: collection-logs
+          name: nepse-collection-logs
           path: logs/
           retention-days: 7
