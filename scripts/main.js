@@ -175,7 +175,7 @@ function continuousMode() {
 }
 
 // Determine mode based on environment
-if (process.env.GITHUB_ACTIONS === 'true' || process.env.CI === 'true') {
+if (process.env.GH_PAT === 'true' || process.env.CI === 'true') {
   singleRun();
 } else {
   continuousMode();
