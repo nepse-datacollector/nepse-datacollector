@@ -15,12 +15,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
- "scripts": {
+"scripts": {
   "start": "node scripts/main.js",
   "dev": "nodemon scripts/main.js",
-  "scrape": "node scripts/main.js",
+  "test-run": "GH_PAT=true node scripts/main.js",
   "test": "echo \"Error: no test specified\" && exit 1"
-  },
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nepse-datacollector/nepse-datacollector.git"

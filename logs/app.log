@@ -1,0 +1,5 @@
+[2025-12-15 18:02:07] INFO: Running in continuous mode (local development)
+[2025-12-15 18:02:07] INFO: 🎯 Data Collector started in continuous mode
+[2025-12-15 18:02:07] INFO: Trading hours: 11:00 - 15:00 Nepal time
+[2025-12-15 18:03:53] INFO: Received SIGINT, shutting down...
+[2025-12-15 18:03:53] INFO: 🛑 Data Collector stopped
