@@ -40,10 +40,11 @@ jobs:
 
       - name: Upload logs if job fails
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: nepse-collection-logs
           path: logs/
           retention-days: 7
+
 
 
