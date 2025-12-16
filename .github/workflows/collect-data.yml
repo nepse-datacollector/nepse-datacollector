@@ -5,7 +5,7 @@ on:
   # Nepal time: 11:00–15:00 (UTC +5:45)
   # UTC equivalent: 05:15–09:15
   schedule:
-    - cron: "*/5 5-9 * * 1-5"
+    - cron: '15 4 * * 0-4'
 
   # Allow manual trigger
   workflow_dispatch:
@@ -45,6 +45,7 @@ jobs:
           name: nepse-collection-logs
           path: logs/
           retention-days: 7
+
 
 
 
